@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <user>
-  <fullName>jenkins user</fullName>
+  <fullName>jenkins</fullName>
   <properties>
     <jenkins.security.ApiTokenProperty>
-      <apiToken>k5fPVErBnAjkr9YoebOZhZOWEDjKXjYPTcDBOf87cXpPeUhHAyQFWqvfobXxkijy</apiToken>
+      <apiToken>XGQoMVk2F4OnwTz0OI8D9rzrCLvD1eaZY3vv5xYDUVlCtXQU4UB7KnP8M31+pNd2</apiToken>
     </jenkins.security.ApiTokenProperty>
-    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.0.1">
+    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.0.4">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
     <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.42">
@@ -29,7 +29,7 @@
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
-      <passwordHash>#jbcrypt:$2a$10$9iTMc6dBGK/x/lXHizdQ8eQqnNZPZCG9y2hzOECwPoPjOsiLeUPuO</passwordHash>
+      <passwordHash>#jbcrypt:$2a$10$CtpAeSwS3vBsMVlH/AT4..6mRg69xauK3eG2rejvlkma09jdb0rGi</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
     <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.17">
       <emailAddress>victor.semenov@gmail.com</emailAddress>
@@ -38,7 +38,7 @@
       <roles>
         <string>authenticated</string>
       </roles>
-      <timestamp>1464055855229</timestamp>
+      <timestamp>1464138980426</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
