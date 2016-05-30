@@ -17,7 +17,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>curl --fail &quot;https://mcasg123.org/meetingfinder/get_meetings/?lat=39.0839&amp;long=-77.1531&amp;distance_miles=50&amp;day_of_week_in=1&amp;day_of_week_in=6&quot;</command>
+      <command>curl --fail &quot;https://mcasg.org/meetingfinder/get_meetings/?lat=39.0839&amp;long=-77.1531&amp;distance_miles=50&amp;day_of_week_in=1&amp;day_of_week_in=6&quot;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
