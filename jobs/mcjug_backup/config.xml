@@ -29,7 +29,22 @@
       <siteName>aabuddy@mcasg.org:22</siteName>
       <command>psql -p5433 -daabuddy -c&apos;select id, name, description, address, ST_AsText (geo_location), created_date from aabuddy_meeting&apos; &gt; aabuddy_DATADUMP.txt</command>
     </org.jvnet.hudson.plugins.SSHBuilder>
+    <hudson.tasks.Shell>
+      <command>scp aabuddy@mcasg.org:/home/aabuddy/aabuddy_db.txt .</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>scp aabuddy@mcasg.org:/home/aabuddy/aabuddy_DATADUMP.txt .</command>
+    </hudson.tasks.Shell>
   </builders>
-  <publishers/>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>aabuddy_db.txt aabuddy_DATADUMP.txt</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+    </hudson.tasks.ArtifactArchiver>
+  </publishers>
   <buildWrappers/>
 </project>
