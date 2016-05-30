@@ -38,13 +38,18 @@
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>aabuddy_db.txt aabuddy_DATADUMP.txt</artifacts>
+      <artifacts>aabuddy_*.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
+    <hudson.tasks.Mailer plugin="mailer@1.17">
+      <recipients>victor.semenov@gmail.com</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers/>
 </project>
