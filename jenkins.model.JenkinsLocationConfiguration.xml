@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <jenkins.model.JenkinsLocationConfiguration>
-  <adminAddress>jenkins@104.131.66.174</adminAddress>
+  <adminAddress>jenkins@[104.131.66.174]</adminAddress>
   <jenkinsUrl>https://104.131.66.174/</jenkinsUrl>
 </jenkins.model.JenkinsLocationConfiguration>
