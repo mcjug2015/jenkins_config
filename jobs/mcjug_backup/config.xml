@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
   <description>creates and stores mcjug backups</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -19,7 +20,16 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.4">
+      <siteName>aabuddy@mcasg.org:22</siteName>
+      <command>pg_dump --clean --file=aabuddy_db_BROKEN.txt --schema=public --no-owner --verbose --no-acl --column-inserts --quote-all-identifiers -p5433 -Uaabuddy</command>
+    </org.jvnet.hudson.plugins.SSHBuilder>
+    <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.4">
+      <siteName>aabuddy@mcasg.org:22</siteName>
+      <command>psql -p5433 -daabuddy -c&apos;select id, name, description, address, ST_AsText (geo_location), created_date from aabuddy_meeting&apos; &gt; aabuddy_DATADUMP.txt</command>
+    </org.jvnet.hudson.plugins.SSHBuilder>
+  </builders>
   <publishers/>
   <buildWrappers/>
 </project>
