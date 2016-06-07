@@ -23,15 +23,16 @@
   <builders>
     <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.4">
       <siteName>aabuddy@mcasg.org:22</siteName>
+      <command>sudo /etc/init.d/httpd stop
+</command>
+    </org.jvnet.hudson.plugins.SSHBuilder>
+    <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.4">
+      <siteName>aabuddy@mcasg.org:22</siteName>
       <command>sudo /sbin/service postgresql-9.2 stop</command>
     </org.jvnet.hudson.plugins.SSHBuilder>
     <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.4">
       <siteName>aabuddy@mcasg.org:22</siteName>
       <command>sudo /sbin/service postgresql-9.2 start</command>
-    </org.jvnet.hudson.plugins.SSHBuilder>
-    <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.4">
-      <siteName>aabuddy@mcasg.org:22</siteName>
-      <command>sudo /etc/init.d/httpd stop</command>
     </org.jvnet.hudson.plugins.SSHBuilder>
     <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.4">
       <siteName>aabuddy@mcasg.org:22</siteName>
