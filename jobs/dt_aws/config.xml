@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
   <description>build stand up django template instance and curl the welcome page</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -42,5 +43,16 @@
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.terraform.TerraformBuildWrapper plugin="terraform@1.0.4">
+      <variables>/home/jenkins/secret/dt_aws</variables>
+      <doDestroy>false</doDestroy>
+      <config>
+        <value>file</value>
+        <fileConfig>provisioning/terraform/aws</fileConfig>
+        <mode>FILE</mode>
+      </config>
+      <terraformInstallation>terraform</terraformInstallation>
+    </org.jenkinsci.plugins.terraform.TerraformBuildWrapper>
+  </buildWrappers>
 </project>
