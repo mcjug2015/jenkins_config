@@ -35,7 +35,11 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>echo $AWS_ACCESS_KEY_ID</command>
+    </hudson.tasks.Shell>
+  </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.17">
       <recipients>victor.semenov@gmail.com</recipients>
