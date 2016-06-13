@@ -44,6 +44,12 @@
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
+    <EnvInjectBuildWrapper plugin="envinject@1.92.1">
+      <info>
+        <propertiesFilePath>/home/jenkins/secret/dt_aws/dt_aws.tfvars</propertiesFilePath>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
     <org.jenkinsci.plugins.terraform.TerraformBuildWrapper plugin="terraform@1.0.4">
       <variables>local_ip = &quot;104.236.16.188/32&quot;</variables>
       <doDestroy>false</doDestroy>
