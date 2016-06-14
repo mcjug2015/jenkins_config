@@ -37,7 +37,10 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>echo $AWS_ACCESS_KEY_ID</command>
+      <command>echo $AWS_ACCESS_KEY_ID
+cd provisioning/terraform/aws/
+/var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform plan -out the_plan
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -48,6 +51,11 @@
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.29">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
     <EnvInjectBuildWrapper plugin="envinject@1.92.1">
       <info>
         <propertiesFilePath>/home/jenkins/secret/dt_aws/dt_aws.tfvars</propertiesFilePath>
