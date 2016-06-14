@@ -40,7 +40,7 @@
       <command>echo $AWS_ACCESS_KEY_ID
 cd provisioning/terraform/aws/
 /var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform plan -out the_plan
-</command>
+/var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform apply the_plan</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
