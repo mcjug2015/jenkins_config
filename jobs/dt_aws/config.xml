@@ -60,7 +60,7 @@ cd provisioning/terraform/aws/
           <script>echo $AWS_ACCESS_KEY_ID&#xd;
 pwd&#xd;
 cd provisioning/terraform/aws/&#xd;
-/var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform -input=false destroy</script>
+/var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform destroy -force</script>
         </hudson.plugins.postbuildtask.TaskProperties>
       </tasks>
     </hudson.plugins.postbuildtask.PostbuildTask>
