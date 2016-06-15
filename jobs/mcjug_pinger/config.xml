@@ -28,12 +28,6 @@
     <hudson.tasks.Shell>
       <command>curl --fail &quot;https://mcasg.org/meetingfinder/get_meetings/?lat=39.0839&amp;long=-77.1531&amp;distance_miles=50&amp;day_of_week_in=1&amp;day_of_week_in=6&quot;</command>
     </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>date
-
-sleep 30s
-date</command>
-    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.17">
