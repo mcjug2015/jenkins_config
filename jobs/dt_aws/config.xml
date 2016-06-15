@@ -37,8 +37,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>sleep 700s
-python check_provisioning.py</command>
+      <command>python check_provisioning.py</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
