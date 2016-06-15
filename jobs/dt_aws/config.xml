@@ -59,7 +59,7 @@ python check_provisioning.py</command>
               <operator>AND</operator>
             </hudson.plugins.postbuildtask.LogProperties>
           </logTexts>
-          <EscalateStatus>false</EscalateStatus>
+          <EscalateStatus>true</EscalateStatus>
           <RunIfJobSuccessful>false</RunIfJobSuccessful>
           <script>echo $AWS_ACCESS_KEY_ID&#xd;
 pwd&#xd;
