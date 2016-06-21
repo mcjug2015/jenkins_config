@@ -37,32 +37,27 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>echo $AWS_ACCESS_KEY_ID
+      <command>echo $DO_PAT
 pwd
-cd provisioning/terraform/aws/
+cd provisioning/terraform/do/
 /var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform plan -out the_plan
 /var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform apply the_plan
 /var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform show</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>sleep 900s
-python check_provisioning.py</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <org.jenkinsci.plugins.postbuildscript.PostBuildScript plugin="postbuildscript@0.17">
       <buildSteps>
         <hudson.tasks.Shell>
-          <command>echo $AWS_ACCESS_KEY_ID
+          <command>echo $DO_PAT
 pwd
-cd provisioning/terraform/aws/
+cd provisioning/terraform/do/
 /var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform destroy -force</command>
         </hudson.tasks.Shell>
       </buildSteps>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.tasks.Mailer plugin="mailer@1.17">
       <recipients>victor.semenov@gmail.com</recipients>
