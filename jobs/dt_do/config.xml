@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>build stand up django template instance and curl the welcome page</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>10</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.4">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>git@github.com:mcjug2015/django_template.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>echo $AWS_ACCESS_KEY_ID
+pwd
+cd provisioning/terraform/aws/
+/var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform plan -out the_plan
+/var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform apply the_plan
+/var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform show</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>sleep 900s
+python check_provisioning.py</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <org.jenkinsci.plugins.postbuildscript.PostBuildScript plugin="postbuildscript@0.17">
+      <buildSteps>
+        <hudson.tasks.Shell>
+          <command>echo $AWS_ACCESS_KEY_ID
+pwd
+cd provisioning/terraform/aws/
+/var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform destroy -force</command>
+        </hudson.tasks.Shell>
+      </buildSteps>
+      <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
+      <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
+      <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
+    </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
+    <hudson.tasks.Mailer plugin="mailer@1.17">
+      <recipients>victor.semenov@gmail.com</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.29">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <EnvInjectBuildWrapper plugin="envinject@1.92.1">
+      <info>
+        <propertiesFilePath>/home/jenkins/secret/dt_aws/dt_aws.tfvars</propertiesFilePath>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+  </buildWrappers>
+</project>
