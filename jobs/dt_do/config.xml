@@ -37,7 +37,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>echo $DO_PAT
+      <command>echo $DIGITALOCEAN_TOKEN
 pwd
 cd provisioning/terraform/do/
 /var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform plan -out the_plan
@@ -49,7 +49,7 @@ cd provisioning/terraform/do/
     <org.jenkinsci.plugins.postbuildscript.PostBuildScript plugin="postbuildscript@0.17">
       <buildSteps>
         <hudson.tasks.Shell>
-          <command>echo $DO_PAT
+          <command>echo $DIGITALOCEAN_TOKEN
 pwd
 cd provisioning/terraform/do/
 /var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform destroy -force</command>
