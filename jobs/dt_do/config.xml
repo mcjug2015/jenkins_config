@@ -44,6 +44,10 @@ cd provisioning/terraform/do/
 /var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform apply the_plan
 /var/lib/jenkins/tools/org.jenkinsci.plugins.terraform.TerraformInstallation/terraform/terraform show</command>
     </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>sleep 900s
+python check_provisioning.py do</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <org.jenkinsci.plugins.postbuildscript.PostBuildScript plugin="postbuildscript@0.17">
