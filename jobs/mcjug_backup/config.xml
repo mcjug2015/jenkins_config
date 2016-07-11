@@ -27,7 +27,7 @@
   <builders>
     <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.4">
       <siteName>aabuddy@mcasg.org:22</siteName>
-      <command>pg_dump --clean --file=aabuddy_db_BROKEN.txt --schema=public --no-owner --verbose --no-acl --column-inserts --quote-all-identifiers -p5433 -Uaabuddy</command>
+      <command>pg_dump --clean --file=aabuddy_db.txt --schema=public --no-owner --verbose --no-acl --column-inserts --quote-all-identifiers -p5433 -Uaabuddy</command>
     </org.jvnet.hudson.plugins.SSHBuilder>
     <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.4">
       <siteName>aabuddy@mcasg.org:22</siteName>
