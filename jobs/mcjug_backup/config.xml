@@ -33,11 +33,18 @@
       <siteName>aabuddy@mcasg.org:22</siteName>
       <command>psql -p5433 -daabuddy -c&apos;select id, name, description, address, ST_AsText (geo_location), created_date from aabuddy_meeting&apos; &gt; aabuddy_DATADUMP.txt</command>
     </org.jvnet.hudson.plugins.SSHBuilder>
+    <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.4">
+      <siteName>aabuddy@mcasg.org:22</siteName>
+      <command>pg_dump -Fc --schema=public --no-owner --verbose --no-acl --column-inserts --quote-all-identifiers -p5433 -Uaabuddy &gt; aabuddy_mfserver2_dump.dmp</command>
+    </org.jvnet.hudson.plugins.SSHBuilder>
     <hudson.tasks.Shell>
       <command>scp aabuddy@mcasg.org:/home/aabuddy/aabuddy_db.txt .</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>scp aabuddy@mcasg.org:/home/aabuddy/aabuddy_DATADUMP.txt .</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>scp aabuddy@mcasg.org:/home/aabuddy/aabuddy_mfserver2_dump.dmp .</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
