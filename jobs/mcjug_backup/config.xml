@@ -35,7 +35,7 @@
     </org.jvnet.hudson.plugins.SSHBuilder>
     <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.4">
       <siteName>aabuddy@mcasg.org:22</siteName>
-      <command>pg_dump -Fc --schema=public --no-owner --verbose --no-acl --column-inserts --quote-all-identifiers -p5433 -Uaabuddy &gt; aabuddy_mfserver2_dump.dmp</command>
+      <command>pg_dump -Fc --schema=public --no-owner --verbose --no-acl --column-inserts --quote-all-identifiers -p5433 -Uaabuddy &gt; aabuddy_mfserver2_dump.txt</command>
     </org.jvnet.hudson.plugins.SSHBuilder>
     <hudson.tasks.Shell>
       <command>scp aabuddy@mcasg.org:/home/aabuddy/aabuddy_db.txt .</command>
@@ -44,7 +44,7 @@
       <command>scp aabuddy@mcasg.org:/home/aabuddy/aabuddy_DATADUMP.txt .</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>scp aabuddy@mcasg.org:/home/aabuddy/aabuddy_mfserver2_dump.dmp .</command>
+      <command>scp aabuddy@mcasg.org:/home/aabuddy/aabuddy_mfserver2_dump.txt .</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
