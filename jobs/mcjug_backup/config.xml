@@ -49,7 +49,7 @@
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>aabuddy_*.txt aabuddy_*.dump</artifacts>
+      <artifacts>aabuddy_*.txt,aabuddy_*.dump</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
