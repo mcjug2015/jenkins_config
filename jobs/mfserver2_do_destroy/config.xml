@@ -13,22 +13,7 @@
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.4">
-    <configVersion>2</configVersion>
-    <userRemoteConfigs>
-      <hudson.plugins.git.UserRemoteConfig>
-        <url>git@github.com:mcjug2015/mfserver2.git</url>
-      </hudson.plugins.git.UserRemoteConfig>
-    </userRemoteConfigs>
-    <branches>
-      <hudson.plugins.git.BranchSpec>
-        <name>*/master</name>
-      </hudson.plugins.git.BranchSpec>
-    </branches>
-    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <submoduleCfg class="list"/>
-    <extensions/>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -37,10 +22,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>virtualenv mfserver2_venv
-source mfserver2_venv/bin/activate
-pip install fabric
-fab create_do_box_and_wait:&quot;$DIGITALOCEAN_TOKEN&quot;,&quot;/home/jenkins/.ssh/id_rsa.pub&quot;,&quot;jenkins_key&quot;
+      <command>source /var/lib/jenkins/workspace/mfserver2_do_create/mfserver2_venv/bin/activate
+cd /var/lib/jenkins/workspace/mfserver2_do_create/
+fab destroy_do_box:&quot;$DIGITALOCEAN_TOKEN&quot;
 deactivate</command>
     </hudson.tasks.Shell>
   </builders>
