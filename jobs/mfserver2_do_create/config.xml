@@ -41,7 +41,32 @@
 source mfserver2_venv/bin/activate
 pip install fabric
 fab create_do_box_and_wait:&quot;$DIGITALOCEAN_TOKEN&quot;,&quot;/home/jenkins/.ssh/id_rsa.pub&quot;,&quot;jenkins_key&quot;
-deactivate</command>
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>cd provisioning/terraform/do
+echo MFSERVER2_IP=`terraform output ip` &gt; mfserver2.properties</command>
+    </hudson.tasks.Shell>
+    <EnvInjectBuilder plugin="envinject@1.92.1">
+      <info>
+        <propertiesFilePath>provisioning/terraform/do/mfserver2.properties</propertiesFilePath>
+      </info>
+    </EnvInjectBuilder>
+    <hudson.tasks.Shell>
+      <command>scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/mcjug_backup/aabuddy_mfserver2_schema.dump root@$MFSERVER2_IP:.
+scp /var/lib/jenkins/workspace/mcjug_backup/aabuddy_mfserver2_data.dump root@$MFSERVER2_IP:.
+ssh -t root@$MFSERVER2_IP &quot;cp /root/aabuddy_mfserver2_schema.dump /opt/mfserver2/code/&quot;
+ssh -t root@$MFSERVER2_IP &quot;chown reg_user:reg_user /opt/mfserver2/code/aabuddy_mfserver2_schema.dump&quot;
+ssh -t root@$MFSERVER2_IP &quot;cp /root/aabuddy_mfserver2_data.dump /opt/mfserver2/code/&quot;
+ssh -t root@$MFSERVER2_IP &quot;chown reg_user:reg_user /opt/mfserver2/code/aabuddy_mfserver2_data.dump&quot;</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>ssh -t root@$MFSERVER2_IP &apos;sudo -i -u reg_user bash -c &quot;cd /opt/mfserver2/code/; source /opt/mfserver2/venv/bin/activate; fab -fdjango_app/old_db_restore/fab_restore.py restore:/opt/mfserver2/code/aabuddy_mfserver2_schema.dump,/opt/mfserver2/code/aabuddy_mfserver2_data.dump&quot;&apos;
+ssh -t root@$MFSERVER2_IP &quot;sudo -i -u postgres bash -c &apos;vacuumdb mfserver2&apos;&quot;
+ssh -t root@$MFSERVER2_IP &quot;systemctl stop postgresql-9.6&quot;
+ssh -t root@$MFSERVER2_IP &quot;systemctl start postgresql-9.6&quot;
+deactivate
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
