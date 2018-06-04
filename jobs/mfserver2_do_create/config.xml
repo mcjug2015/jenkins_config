@@ -39,7 +39,7 @@
     <hudson.tasks.Shell>
       <command>virtualenv mfserver2_venv
 source mfserver2_venv/bin/activate
-pip install fabric
+pip install fabric==1.14.0
 fab create_do_box_and_wait:&quot;$DIGITALOCEAN_TOKEN&quot;,&quot;/home/jenkins/.ssh/id_rsa.pub&quot;,&quot;jenkins_key&quot;
 deactivate
 </command>
